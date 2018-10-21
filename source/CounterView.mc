@@ -2,6 +2,8 @@ using Toybox.WatchUi;
 
 class CounterView extends WatchUi.View {
     var counterValue = 1;
+    var height;
+    var width;
 
     function initialize() {
         View.initialize();
@@ -10,6 +12,8 @@ class CounterView extends WatchUi.View {
     // Load your resources here
     function onLayout(dc) {
         setLayout(Rez.Layouts.MainLayout(dc));
+        height = dc.getHeight();
+        width = dc.getWidth();
         updateText();
     }
 
@@ -32,6 +36,14 @@ class CounterView extends WatchUi.View {
     function onHide() {
     }
 
+    function getHeight() {
+        return height;
+    }
+
+    function getWidth() {
+        return width;
+    }
+
     function updateText() {
         var counter = View.findDrawableById("counter");
         counter.setText(counterValue.toString());
@@ -40,6 +52,11 @@ class CounterView extends WatchUi.View {
 
     function increment() {
         counterValue += 1;
+        requestUpdate();
+    }
+
+    function decrement() {
+        counterValue -= 1;
         requestUpdate();
     }
 
