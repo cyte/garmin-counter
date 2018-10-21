@@ -16,7 +16,9 @@ class CounterApp extends Application.AppBase {
 
     // Return the initial view of your application here
     function getInitialView() {
-        return [ new CounterView() ];
+        var counterView = new CounterView();
+        var touchDelegate = new TouchDelegate(counterView);
+        return [ counterView, touchDelegate ];
     }
 
 }

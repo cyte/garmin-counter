@@ -1,6 +1,7 @@
 using Toybox.WatchUi;
 
 class CounterView extends WatchUi.View {
+    var counterValue = 1;
 
     function initialize() {
         View.initialize();
@@ -9,8 +10,7 @@ class CounterView extends WatchUi.View {
     // Load your resources here
     function onLayout(dc) {
         setLayout(Rez.Layouts.MainLayout(dc));
-        var counter = View.findDrawableById("counter");
-        counter.setText("1");
+        updateText();
     }
 
     // Called when this View is brought to the foreground. Restore
@@ -21,6 +21,7 @@ class CounterView extends WatchUi.View {
 
     // Update the view
     function onUpdate(dc) {
+        updateText();
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
     }
@@ -29,6 +30,17 @@ class CounterView extends WatchUi.View {
     // state of this View here. This includes freeing resources from
     // memory.
     function onHide() {
+    }
+
+    function updateText() {
+        var counter = View.findDrawableById("counter");
+        counter.setText(counterValue.toString());
+        System.println("Uppedetti" + counterValue.toString());
+    }
+
+    function increment() {
+        counterValue += 1;
+        requestUpdate();
     }
 
 }
