@@ -9,6 +9,8 @@ class CounterView extends WatchUi.View {
     // Load your resources here
     function onLayout(dc) {
         setLayout(Rez.Layouts.MainLayout(dc));
+        var counter = View.findDrawableById("counter");
+        counter.setText("1");
     }
 
     // Called when this View is brought to the foreground. Restore
